@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="#FBF7F7"
+    android:gravity="center"
+    android:layout_margin="2dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="top"
+                    android:layout_margin="20dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="150dp"
+                            android:src="@drawable/logo_jpg"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="25dp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/aclonica"
+                            android:text="Sri Vasavi"
+                            android:textAlignment="center"
+                            android:textColor="#052377"
+                            android:textSize="30dp"
+                            android:textStyle="bold|italic"/>
+
+                        <Button
+                            android:layout_width="295dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/round_button_me"
+                            android:onClick="me_web"
+                            android:text="Computer Science and Engineering"
+                            android:textSize="15dp"
+                            android:layout_marginTop="20dp"/>
+                        <Button
+                            android:layout_width="295dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="30dp"
+                            android:background="@drawable/round_vasavi"
+                            android:onClick="results"
+                            android:text="Results"
+                            android:textSize="15dp" />
+                        <Button
+                            android:layout_width="295dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="30dp"
+                            android:background="@drawable/round_live"
+                            android:onClick="live_session"
+                            android:text="Live Sessions"
+                            android:textSize="15dp" />
+                        <Button
+                            android:layout_width="295dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="30dp"
+                            android:background="@drawable/round_lms"
+                            android:onClick="lms"
+                            android:text="Sri Vasavi Lms"
+                            android:textSize="15dp" />
+                        <Button
+                            android:layout_width="295dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="30dp"
+                            android:background="@drawable/round_vasavi"
+                            android:onClick="vasavi"
+                            android:text="Sri Vasavi Engineering College"
+                            android:textSize="15dp"
+                            android:layout_marginBottom="10dp"/>
+                         <!--<LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_marginTop="10dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="15dp"
+                                android:text="Report Problem"
+                                android:layout_gravity="end|bottom"
+                                android:layout_marginRight="20dp"
+                                android:textColor="#D50000"
+                                android:textStyle="bold"
+                                android:id="@+id/repot"
+                                android:layout_marginTop="5dp"/>
+                        </LinearLayout>-->
+                        </LinearLayout>
+        </ScrollView>
+
+
+
+</LinearLayout>
