@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,8 +17,10 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import android.webkit.WebChromeClient;
 
 public class LiveSessions extends AppCompatActivity {
     WebView mywebview;
@@ -27,6 +31,7 @@ public class LiveSessions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_live_sessions);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitleTextColor(0xFFFFFFFF);
         setSupportActionBar(toolbar);
         progressBar = findViewById(R.id.progress);
         mywebview = findViewById(R.id.live);
@@ -38,10 +43,16 @@ public class LiveSessions extends AppCompatActivity {
         webSettings.setBuiltInZoomControls(true);
         webSettings.setDefaultZoom(WebSettings.ZoomDensity.FAR);
         webSettings.setSupportZoom(true);
+        webSettings.setDisplayZoomControls(false);
         webSettings.setBuiltInZoomControls(true);
         webSettings.setUseWideViewPort(true);
         mywebview.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         mywebview.setOverScrollMode(WebView.OVER_SCROLL_IF_CONTENT_SCROLLS);
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setAppCacheEnabled(true);
+        webSettings.setAllowFileAccess(true);
+        webSettings.setDomStorageEnabled(true);
+        mywebview.setWebViewClient(new LiveSessions.WebViewClient());
 
 
         // ATTENTION: This was auto-generated to handle app links.
@@ -57,13 +68,47 @@ public class LiveSessions extends AppCompatActivity {
         }
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
+            if(url.startsWith("http"))
+            {
+                view.loadUrl(url);
+            }
+            else if(url.startsWith("zoomus:")){
+                launchZoomUrl(url);
+            }
+            else if(url.startsWith("tel")){
+                dail(url);
+            }
+            else {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
             return true;
         }
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
             progressBar.setVisibility(View.GONE);
+        }
+    }
+
+    /*private void launchZoomClient() {
+        PackageManager pm = getPackageManager();
+        Intent intent = pm.getLaunchIntentForPackage("us.zoom.videomeetings");
+        if (intent != null) {
+            startActivity(intent);
+        }
+    }*/
+
+    public void dail(String url){
+        Intent intent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:"+url));
+        startActivity(intent);
+    }
+
+    private void launchZoomUrl(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("zoomus://"+url));
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
         }
     }
 
@@ -101,3 +146,4 @@ public class LiveSessions extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+

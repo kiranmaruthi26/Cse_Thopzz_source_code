@@ -7,10 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".feedback"
     android:orientation="vertical"
-    android:gravity="center"
-    android:layout_margin="30dp">
+    android:gravity="center">
 
-    <TextView
+    <include android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"/>
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/me_web"/>
+    <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Report Error/ Feedback"
@@ -45,6 +56,6 @@
         android:layout_height="wrap_content"
         android:text="Send"
         android:textColor="#000"
-        android:id="@+id/send"/>
+        android:id="@+id/send"/>-->
 
 </LinearLayout>

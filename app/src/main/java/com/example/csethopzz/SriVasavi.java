@@ -33,6 +33,7 @@ public class SriVasavi extends AppCompatActivity {
         setContentView(R.layout.activity_sri_vasavi);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(0xFFFFFFFF);
         progressBar = findViewById(R.id.progress);
         mywebview = findViewById(R.id.vasavi);
         mywebview.setWebViewClient(new WebViewClient());
@@ -41,8 +42,10 @@ public class SriVasavi extends AppCompatActivity {
         webSettings.setBuiltInZoomControls(true);
         webSettings.setDefaultZoom(WebSettings.ZoomDensity.FAR);
         webSettings.setSupportZoom(true);
+        webSettings.setDisplayZoomControls(false);
         webSettings.setBuiltInZoomControls(true);
         webSettings.setUseWideViewPort(true);
+        webSettings.setDomStorageEnabled(true);
         mywebview.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         mywebview.setOverScrollMode(WebView.OVER_SCROLL_IF_CONTENT_SCROLLS);
         mywebview.getSettings().setLoadsImagesAutomatically(true);
@@ -82,7 +85,14 @@ public class SriVasavi extends AppCompatActivity {
         }
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
+
+            if(url.startsWith("http"))
+            {
+                view.loadUrl(url);
+            }
+            else if(url.startsWith("tel")){
+                dail(url);
+            }
             return true;
         }
         @Override
@@ -90,6 +100,11 @@ public class SriVasavi extends AppCompatActivity {
             super.onPageFinished(view, url);
             progressBar.setVisibility(View.GONE);
         }
+    }
+
+    public void dail(String url){
+        Intent intent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:"+url));
+        startActivity(intent);
     }
 
     @Override

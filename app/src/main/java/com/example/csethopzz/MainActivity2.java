@@ -51,6 +51,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(0xFFFFFFFF);
         progressBar = findViewById(R.id.progress);
         mywebview = findViewById(R.id.me_web);
         mywebview.setWebViewClient(new WebViewClient());
@@ -61,12 +62,14 @@ public class MainActivity2 extends AppCompatActivity {
         webSettings.setDefaultZoom(WebSettings.ZoomDensity.FAR);
         webSettings.setSupportZoom(true);
         webSettings.setBuiltInZoomControls(true);
+        webSettings.setDisplayZoomControls(false);
         webSettings.setUseWideViewPort(true);
         mywebview.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         mywebview.setOverScrollMode(WebView.OVER_SCROLL_IF_CONTENT_SCROLLS);
         webSettings.setJavaScriptEnabled(true);
         webSettings.setAppCacheEnabled(true);
         webSettings.setAllowFileAccess(true);
+        webSettings.setDomStorageEnabled(true);
         mywebview.setWebViewClient(new WebViewClient());
         mywebview.setWebChromeClient(new ChromeClient());
         mywebview.loadUrl("https://sites.google.com/view/csesvec");
@@ -107,7 +110,24 @@ public class MainActivity2 extends AppCompatActivity {
         }
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
+            if(url.startsWith("http"))
+            {
+                view.loadUrl(url);
+            }
+            else if(url.startsWith("zoomus:"))
+            {
+                launchZoomUrl(url);
+            }
+            else if(url.startsWith("tel")){
+                dail(url);
+            }
+            else if(url.startsWith("mailto"))
+            {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+                //openmail(url);
+            }
             return true;
         }
         @Override
@@ -117,6 +137,16 @@ public class MainActivity2 extends AppCompatActivity {
         }
     }
 
+    private void launchZoomUrl(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("zoomus://"+url));
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+    public void dail(String url){
+        Intent intent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:"+url));
+        startActivity(intent);
+    }
     @Override
     public void onBackPressed() {
         if(mywebview.canGoBack())

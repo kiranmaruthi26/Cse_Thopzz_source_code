@@ -54,8 +54,19 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,Results.class);
         startActivity(intent);
     }
-    /*public void Report(View view) {
+    public void Report(View view) {
         Intent intent = new Intent(this,feedback.class);
         startActivity(intent);
-    }*/
+    }
+
+    public void contac_us(View view) {
+        Intent intent = new Intent(this,ContactUs.class);
+        startActivity(intent);
+    }
+
+    public void update(View view) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("https://github.com/kiranmaruthi26/Cse_Topzz/raw/main/app-debug.apk"));
+        startActivity(intent);
+    }
 }

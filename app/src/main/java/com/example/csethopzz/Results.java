@@ -27,6 +27,7 @@ public class Results extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitleTextColor(0xFFFFFFFF);
         setSupportActionBar(toolbar);
         progressBar = findViewById(R.id.progress);
         mywebview = findViewById(R.id.me_web);
@@ -35,11 +36,12 @@ public class Results extends AppCompatActivity {
 
         WebSettings webSettings = mywebview.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        webSettings.setBuiltInZoomControls(true);
         webSettings.setDefaultZoom(WebSettings.ZoomDensity.FAR);
         webSettings.setSupportZoom(true);
         webSettings.setBuiltInZoomControls(true);
+        webSettings.setDisplayZoomControls(false);
         webSettings.setUseWideViewPort(true);
+        webSettings.setDomStorageEnabled(true);
         mywebview.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         mywebview.setOverScrollMode(WebView.OVER_SCROLL_IF_CONTENT_SCROLLS);
 
@@ -57,7 +59,23 @@ public class Results extends AppCompatActivity {
         }
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
+            if(url.startsWith("http"))
+            {
+                view.loadUrl(url);
+            }
+            else if(url.startsWith("tel")){
+                dail(url);
+            }
+            else if(url.startsWith("sms")){
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+            else{
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
             return true;
         }
         @Override
@@ -65,6 +83,16 @@ public class Results extends AppCompatActivity {
             super.onPageFinished(view, url);
             progressBar.setVisibility(View.GONE);
         }
+    }
+
+   /* public void launchbrowser(String url){
+        Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse("intent://"+url));
+            startActivity(intent);
+    }*/
+
+    public void dail(String url){
+        Intent intent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:"+url));
+        startActivity(intent);
     }
 
     @Override

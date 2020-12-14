@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ContactUs"
+    android:orientation="vertical"
+    android:background="@drawable/about_me_background">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="ifContentScrolls">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/aclonica"
+                android:gravity="center"
+                android:text="About Me"
+                android:textAllCaps="true"
+                android:textColor="#000"
+                android:textSize="30dp"
+                android:textStyle="bold|italic" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="8"
+                android:layout_marginTop="60dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/kiran"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/aclonica"
+                    android:gravity="center"
+                    android:text="Kuna Kiran Maruthi"
+                    android:textAllCaps="true"
+                    android:textColor="#46059F"
+                    android:textSize="25dp"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Student @Computer Science and Engineering"
+                    android:gravity="center"
+                    android:textColor="#000"
+                    android:textAllCaps="true"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sri Vasavi Engineering College"
+                    android:gravity="center"
+                    android:textColor="#000"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pedatadepalli, Tadepalligudem"
+                    android:gravity="center"
+                    android:textColor="#000"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="20dp">
+                    <Button
+                        android:layout_width="125dp"
+                        android:layout_height="wrap_content"
+                        android:text="Call me"
+                        android:onClick="callme"
+                        android:drawableLeft="@drawable/call"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/button_phone"
+                        android:textColor="#000"
+                        android:textStyle="bold"/>
+                    <Button
+                        android:layout_width="125dp"
+                        android:layout_height="wrap_content"
+                        android:text="What's App"
+                        android:onClick="whatsApp"
+                        android:drawableLeft="@drawable/whatsapp_icon"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:background="@drawable/whatsapp_button"/>
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="50dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Write Us Your Feedback"
+                    android:gravity="center"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:onClick="feedback"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Copyrights &#169; kunakiranmaruthi"
+                    android:textColor="#000"
+                    android:gravity="center"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:id="@+id/version" />
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>

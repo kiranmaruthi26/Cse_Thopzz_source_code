@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ContactUs"></activity>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -81,16 +82,18 @@
 
                 <data
                     android:host="sites.google.com"
-                    android:scheme="https"
-                    android:pathPrefix="/view/csesvec" />
+                    android:pathPrefix="/view/csesvec"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-                <!--<action android:name="android.intent.action.MAIN" />
+                <!--
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />-->
+                <category android:name="android.intent.category.LAUNCHER" />
+                -->
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

@@ -28,12 +28,14 @@ public class SriVasavi_LMS extends AppCompatActivity {
         setContentView(R.layout.activity_sri_vasavi__l_m_s);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(0xFFFFFFFF);
         progressBar = findViewById(R.id.progress);
         mywebview = findViewById(R.id.lms);
         mywebview.setWebViewClient(new WebViewClient());
         mywebview.getSettings().setLoadsImagesAutomatically(true);
         WebSettings webSettings = mywebview.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setDisplayZoomControls(false);
         webSettings.setBuiltInZoomControls(true);
         webSettings.setDefaultZoom(WebSettings.ZoomDensity.FAR);
         webSettings.setSupportZoom(true);
@@ -41,7 +43,12 @@ public class SriVasavi_LMS extends AppCompatActivity {
         webSettings.setUseWideViewPort(true);
         mywebview.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         mywebview.setOverScrollMode(WebView.OVER_SCROLL_IF_CONTENT_SCROLLS);
-        mywebview.loadUrl("http://srivasaviengg.digivarsity.com/login/index.php");
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setAppCacheEnabled(true);
+        webSettings.setAllowFileAccess(true);
+        webSettings.setDomStorageEnabled(true);
+        mywebview.setWebViewClient(new SriVasavi_LMS.WebViewClient());
+        mywebview.loadUrl("http://srivasaviengg.digivarsity.com");
 
 
 
@@ -57,13 +64,26 @@ public class SriVasavi_LMS extends AppCompatActivity {
         }
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
+            if(url.startsWith("http"))
+            {
+                view.loadUrl(url);
+            }
+            else if(url.startsWith("zoomus:")){
+                launchZoomUrl(url);
+            }
             return true;
         }
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
             progressBar.setVisibility(View.GONE);
+        }
+    }
+
+    private void launchZoomUrl(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("zoomus://"+url));
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
         }
     }
 
